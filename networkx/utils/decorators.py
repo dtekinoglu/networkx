@@ -1,14 +1,16 @@
+import bz2
+import collections
+import gzip
+import inspect
+import itertools
+import re
 from collections import defaultdict
-from os.path import splitext
 from contextlib import contextmanager
+from os.path import splitext
 from pathlib import Path
 
 import networkx as nx
-from networkx.utils import create_random_state, create_py_random_state
-
-import inspect, itertools, collections
-
-import re, gzip, bz2
+from networkx.utils import create_py_random_state, create_random_state
 
 __all__ = [
     "not_implemented_for",
@@ -245,8 +247,7 @@ def nodes_or_number(which_args):
             nodes = tuple(n)
         else:
             if n < 0:
-                msg = f"Negative number of nodes not valid: {n}"
-                raise nx.NetworkXError(msg)
+                raise nx.NetworkXError(f"Negative number of nodes not valid: {n}")
         return (n, nodes)
 
     try:
